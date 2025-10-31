@@ -67,20 +67,20 @@ export default function VerifyCertificatePage() {
           <span className="text-gray-600">Verify certificate</span>
         </div>
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">eSikshak</h1>
+        <h1 className="text-3xl text-gray-900 mb-8 font-medium">eSikshak</h1>
 
-        <Card className="bg-white p-8 border border-gray-200 shadow-sm rounded-lg">
+        <Card className="bg-white p-8 border shadow-sm rounded-sm border-gray-100">
           <div className="space-y-3">
             <div>
               <span className="text-gray-600 text-sm font-medium">Full name: </span>
-              <span className="text-lg text-[#00539c] font-semibold">{certificateData?.name}</span>
+              <span className="text-[#00539c] font-semibold text-base text-[rgba(24,95,249,1)]">{certificateData?.name}</span>
             </div>
 
             <div>
               <span className="text-gray-600 text-sm font-medium">Course: </span>
               <Link
                 href="https://cybersecurityskills.in/training/course/view.php?id=51"
-                className="text-lg text-[#00539c] font-semibold hover:underline"
+                className="text-[#00539c] font-semibold hover:underline text-base text-[rgba(24,95,249,1)]"
               >
                 Software &amp; Network Security Fundamentals(BCMP Sept25)
               </Link>
@@ -88,15 +88,15 @@ export default function VerifyCertificatePage() {
 
             <div>
               <span className="text-gray-600 text-sm font-medium">Certificate: </span>
-              <span className="text-lg text-gray-900">Course Completion Certificate</span>
+              <span className="text-gray-900 text-base">Course Completion Certificate</span>
             </div>
 
             {certificateData?.verified ? (
-              <div className="bg-green-100 border border-green-300 rounded-lg p-4 mt-6">
-                <span className="text-green-800 font-medium">Verified</span>
+              <div className="bg-green-100 border p-4 mt-6 rounded-xs border-green-200">
+                <span className="font-medium text-foreground">Verified</span>
               </div>
             ) : (
-              <div className="bg-red-100 border border-red-300 rounded-lg p-4 mt-6">
+              <div className="bg-red-100 border border-red-300 p-4 mt-6 rounded-sm">
                 <span className="text-red-800 font-medium">Not Verified</span>
               </div>
             )}
