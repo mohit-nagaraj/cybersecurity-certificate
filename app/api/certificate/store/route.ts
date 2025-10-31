@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { storeName } from "@/lib/store"
+import { createClient } from "@/lib/supabase/server"
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,11 +9,19 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Code and name are required" }, { status: 400 })
     }
 
-    storeName(code, name)
+    const supabase = await createClient()
 
+    const { error } = await supabase.from("certificates").insert({ code, name })
+
+    if (error) {
+      console.error("[v0] Supabase insert error:", error)
+      return NextResponse.json({ error: "Failed to store certificate" }, { status: 500 })
+    }
+
+    console.log("[v0] Certificate stored in Supabase:", { code, name })
     return NextResponse.json({ success: true, code })
   } catch (error) {
-    console.error("Error in store route:", error)
+    console.error("[v0] Error in store route:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

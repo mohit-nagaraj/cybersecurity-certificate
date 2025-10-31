@@ -1,5 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
-import { getName } from "@/lib/store"
+import { createClient } from "@/lib/supabase/server"
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,11 +9,17 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Code is required" }, { status: 400 })
     }
 
-    const name = getName(code)
+    const supabase = await createClient()
 
-    return NextResponse.json({ name })
+    const { data, error } = await supabase.from("certificates").select("name").eq("code", code).single()
+
+    if (error || !data) {
+      return NextResponse.json({ name: null })
+    }
+
+    return NextResponse.json({ name: data.name })
   } catch (error) {
-    console.error("Error in retrieve route:", error)
+    console.error("[v0] Error in retrieve route:", error)
     return NextResponse.json({ error: "Internal server error" }, { status: 500 })
   }
 }

@@ -100,12 +100,6 @@ export default function VerifyCertificatePage() {
                 <span className="text-red-800 font-medium">Not Verified</span>
               </div>
             )}
-
-            <div className="mt-8 p-4 bg-gray-50 rounded-lg text-sm text-gray-600 border border-gray-200">
-              <p>
-                Certificate Code: <span className="font-mono font-semibold text-gray-900">{code}</span>
-              </p>
-            </div>
           </div>
         </Card>
       </main>
