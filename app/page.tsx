@@ -20,6 +20,7 @@ export default function HomePage() {
   const [qrDataUrl, setQrDataUrl] = useState("")
   const [certificateCode, setCertificateCode] = useState("")
   const [submitted, setSubmitted] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleGenerateQR = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -28,6 +29,8 @@ export default function HomePage() {
       alert("Please enter a name")
       return
     }
+
+    setIsLoading(true)
 
     const uniqueId = generateUniqueId()
 
@@ -44,6 +47,7 @@ export default function HomePage() {
     } catch (error) {
       console.error("Error storing certificate:", error)
       alert("Failed to store certificate")
+      setIsLoading(false)
       return
     }
 
@@ -65,6 +69,7 @@ export default function HomePage() {
 
     setCertificateCode(uniqueId)
     setSubmitted(true)
+    setIsLoading(false)
   }
 
   const handleDownloadQR = () => {
@@ -103,12 +108,23 @@ export default function HomePage() {
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Enter your full name"
                   className="w-full"
-                  disabled={submitted}
+                  disabled={submitted || isLoading}
                 />
               </div>
 
-              <Button type="submit" className="w-full bg-[#00539c] hover:bg-[#003d73] text-white" disabled={submitted}>
-                Generate QR Code
+              <Button
+                type="submit"
+                className="w-full bg-[#00539c] hover:bg-[#003d73] text-white"
+                disabled={submitted || isLoading}
+              >
+                {isLoading ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                    Generating...
+                  </div>
+                ) : (
+                  "Generate QR Code"
+                )}
               </Button>
 
               {submitted && (
@@ -122,6 +138,7 @@ export default function HomePage() {
                     setSubmitted(false)
                   }}
                   className="w-full"
+                  disabled={isLoading}
                 >
                   Generate Another
                 </Button>
