@@ -58,7 +58,7 @@ export default function VerifyCertificatePage() {
     <div className="min-h-screen flex flex-col bg-gray-50">
       <Navbar />
 
-      <main className="flex-1 w-full max-w-4xl mx-auto px-4 py-8">
+      <main className="flex-1 w-full max-w-6xl mx-auto px-4 py-8">
         <div className="mb-8 text-sm">
           <Link href="https://cybersecurityskills.in/training/" className="text-[#00539c] hover:underline">
             Dashboard
