@@ -70,14 +70,14 @@ export default function VerifyCertificatePage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-8">eSikshak</h1>
 
         <Card className="bg-white p-8 border border-gray-200 shadow-sm rounded-lg">
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div>
-              <p className="text-gray-600 text-sm font-medium mb-1">Full name:</p>
-              <p className="text-lg text-[#00539c] font-semibold">{certificateData?.name}</p>
+              <span className="text-gray-600 text-sm font-medium">Full name: </span>
+              <span className="text-lg text-[#00539c] font-semibold">{certificateData?.name}</span>
             </div>
 
             <div>
-              <p className="text-gray-600 text-sm font-medium mb-1">Course:</p>
+              <span className="text-gray-600 text-sm font-medium">Course: </span>
               <Link
                 href="https://cybersecurityskills.in/training/course/view.php?id=51"
                 className="text-lg text-[#00539c] font-semibold hover:underline"
@@ -87,8 +87,8 @@ export default function VerifyCertificatePage() {
             </div>
 
             <div>
-              <p className="text-gray-600 text-sm font-medium mb-1">Certificate:</p>
-              <p className="text-lg text-gray-900">Course Completion Certificate</p>
+              <span className="text-gray-600 text-sm font-medium">Certificate: </span>
+              <span className="text-lg text-gray-900">Course Completion Certificate</span>
             </div>
 
             {certificateData?.verified ? (
